@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputNumberOfBags = document.getElementById('numberOfBags');
     const inputReductionPerBag = document.getElementById('reductionPerBag');
     const inputReductionPer1000kg = document.getElementById('reductionPer1000kg');
+    const inputKgsPerPutti = document.getElementById('kgsPerPutti');
     const inputTotalRate = document.getElementById('totalRate');
 
     // Outputs
@@ -102,11 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const bags = parseInt(inputNumberOfBags.value) || 0;
         const reductionPerBag = parseFloat(inputReductionPerBag.value) || 0;
         const reductionPer1000kg = parseFloat(inputReductionPer1000kg.value) || 0;
+        const kgsPerPutti = parseFloat(inputKgsPerPutti.value) || 0;
         const totalRate = parseFloat(inputTotalRate.value) || 0;
 
         // Validation - stricter limits. Allowed 0 for bags and reductions for manual loose paddy.
-        if (landArea <= 0 || totalWeight <= 0 || totalRate <= 0 || bags < 0 || reductionPerBag < 0 || reductionPer1000kg < 0) {
-            errorMessage.textContent = 'Please enter valid numerical values. Land Area, Weight, and Rate must be > 0.';
+        if (landArea <= 0 || totalWeight <= 0 || totalRate <= 0 || kgsPerPutti <= 0 || bags < 0 || reductionPerBag < 0 || reductionPer1000kg < 0) {
+            errorMessage.textContent = 'Please enter valid numerical values. Land Area, Weight, Rate, and Putti Kgs must be > 0.';
             errorMessage.style.opacity = '1';
             receiptSection.classList.remove('show-receipt');
             setTimeout(() => { receiptSection.classList.add('hidden'); }, 300);
@@ -128,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Calculate Putti Value mathematically
-        const puttiVal = Number((finalWeight / 856).toFixed(4));
+        const puttiVal = Number((finalWeight / kgsPerPutti).toFixed(4));
         
         // Farmers multiply the visible price per kg by the final weight on their mobile calculators.
         // If we use hidden decimal precision, the answer mismatches the manual calculator result.
         // Fix: Force pricePerKg to strictly 2 decimal places (Paise level) and calculate total amount from it.
-        const pricePerKgStr = (totalRate / 856).toFixed(2);
+        const pricePerKgStr = (totalRate / kgsPerPutti).toFixed(2);
         const pricePerKg = Number(pricePerKgStr);
         
         const totalAmount = Number((finalWeight * pricePerKg).toFixed(2));

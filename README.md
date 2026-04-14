@@ -12,7 +12,7 @@ PaddyPro is a simple and user-friendly web application designed to help farmers 
 * Calculate final weight
 * Automatic price per kg calculation
 * Total amount calculation
-* Putti conversion (1 Putti = 856 kg)
+* Dynamic Putti conversion (default 1 Putti = 856 kg)
 * Yield analysis (Low / Medium / High)
 * Clean and responsive UI
 * Print receipt feature
@@ -32,7 +32,7 @@ PaddyPro is a simple and user-friendly web application designed to help farmers 
 1. Enter Total Net Weight (kg)
 2. Enter Number of Bags
 3. Enter Reduction per Bag (kg)
-4. Enter Total Rate for 856 kg
+4. Enter Total Rate per Putti
 5. Click on **Calculate**
 6. View the detailed receipt
 7. Use **Print Receipt** if needed
